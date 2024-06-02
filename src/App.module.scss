@@ -111,7 +111,8 @@ p {
 
 .clickButton {
   cursor: pointer;
-  width: 300px;
+  width: 60%;
+  max-width: 300px;
   height: auto;
   margin-top: 20px;
   transition: transform 0.1s ease-in-out;
