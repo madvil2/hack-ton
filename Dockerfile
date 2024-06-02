@@ -20,7 +20,7 @@ RUN yarn build
 RUN yarn global add serve
 
 # Command to serve the build directory
-CMD ["serve", "-s", "build", "-l", "3000"]
+CMD ["serve", "-s", "build", "-l", "80"]
 
 # Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 80
