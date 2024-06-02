@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import styles from './App.module.scss';
 import { addUser, updateUserCoins, getUser, getAllUsers } from './Database/db';
-import { countries } from './countries';
+import { countries } from './Database/countries';
 import Leaderboard from './Components/Leaderboard/Leaderboard';
 import populateDB from './Database/populateDB';
 import { UserOutlined, TrophyOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import buttonSvg from './assets/button.png';
-// import moneySvg from './assets/';
+import moneySvg from './assets/money.png';
 
 function App() {
   const [coinCount, setCoinCount] = useState<number>(0);
@@ -31,7 +31,7 @@ function App() {
           setSelectedCountry(user.country);
         }
       } else {
-        const newUserId = `user-${Date.now()}`;
+        const newUserId = 'You';
         localStorage.setItem('userId', newUserId);
         setUserId(newUserId);
       }
@@ -78,7 +78,10 @@ function App() {
     if (currentView === 'coin') {
       return (
         <div>
-          <h1>{coinCount}</h1>
+          <div className={styles.score}>
+            <img src={moneySvg} alt="money" className={styles.scoreImg} />
+            <h1>{coinCount}</h1>
+          </div>
           <p>Country: {selectedCountry}</p>
           <img src={buttonSvg} alt="Click to earn coins" className={styles.clickButton} onClick={handleButtonClick} />
         </div>
@@ -97,8 +100,8 @@ function App() {
       {renderContent()}
       {selectedCountry && (
         <div className={styles.menu}>
-          <Button ghost className={styles.btn} onClick={() => setCurrentView('coin')} shape="circle" icon={<UserOutlined />} />
-          <Button ghost className={styles.btn} onClick={() => setCurrentView('leaderboard')} shape="circle" icon={<TrophyOutlined />} />
+          <Button ghost className={styles.btn} onClick={() => setCurrentView('coin')} shape="circle" icon={<UserOutlined className={styles.icon} />} />
+          <Button ghost className={styles.btn} onClick={() => setCurrentView('leaderboard')} shape="circle" icon={<TrophyOutlined className={styles.icon} />} />
         </div>
       )}
     </div>

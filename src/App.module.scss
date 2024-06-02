@@ -1,5 +1,4 @@
 /* App.module.scss */
-
 body {
   display: flex;
   flex-direction: column;
@@ -100,7 +99,7 @@ p {
   border: 0 !important;
 }
 
-.menu .anticon {
+.icon {
   font-size: 32px !important;
 }
 
@@ -134,4 +133,16 @@ p {
   100% {
     transform: scale(1);
   }
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.scoreImg {
+  width: 20%;
+  height: 20%;
 }
