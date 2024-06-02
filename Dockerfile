@@ -17,7 +17,7 @@ COPY . .
 RUN yarn build
 
 # Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 4173
 
 # Define the command to run the app
-CMD ["serve", "-s", "docs"]
+CMD ["yarn", "preview"]
