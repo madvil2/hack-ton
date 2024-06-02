@@ -16,9 +16,6 @@ COPY . .
 # Build the app for production
 RUN yarn build
 
-# Install serve to serve the application
-RUN yarn global add serve
-
 # Expose the port the app runs on
 EXPOSE 3000
 
