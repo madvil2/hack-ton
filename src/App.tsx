@@ -7,7 +7,7 @@ import populateDB from './Database/populateDB';
 import { UserOutlined, TrophyOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import buttonSvg from './assets/button.png';
-import moneySvg from './assets/';
+// import moneySvg from './assets/';
 
 function App() {
   const [coinCount, setCoinCount] = useState<number>(0);
