@@ -16,14 +16,14 @@ COPY . .
 # Build the React application
 RUN yarn build
 
-# Copy the serve.json to the root directory
-COPY serve.json .
+# Move serve.json to the build directory
+RUN cp serve.json build/serve.json
 
 # Install serve to serve the build directory
 RUN yarn global add serve
 
 # Command to serve the build directory
-CMD ["serve", "-s", "build", "-c", "serve.json"]
+CMD ["serve", "-s", "build", "-c", "build/serve.json"]
 
 # Expose the port the app runs on
 EXPOSE 80
