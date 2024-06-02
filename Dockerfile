@@ -1,23 +1,26 @@
-# Use an official Node.js runtime as a parent image
-FROM node:18
+# Use an official node image
+FROM node:18-alpine
 
 # Set the working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy package.json and yarn.lock
+# Copy the package.json and yarn.lock files to the working directory
 COPY package.json yarn.lock ./
 
-# Install dependencies using Yarn
+# Install dependencies
 RUN yarn install
 
-# Copy the rest of the application code
+# Copy the rest of the application code to the working directory
 COPY . .
 
-# Build the app for production
+# Build the React application
 RUN yarn build
 
-# Expose the port the app runs on
-EXPOSE 4173
+# Install serve to serve the build directory
+RUN yarn global add serve
 
-# Define the command to run the app
-CMD ["yarn", "preview"]
+# Command to serve the build directory
+CMD ["serve", "-s", "build", "-l", "3000"]
+
+# Expose the port the app runs on
+EXPOSE 3000
