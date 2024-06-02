@@ -1,4 +1,4 @@
-# Use an official node image
+# Use an official Node.js image with Yarn
 FROM node:18-alpine
 
 # Set the working directory
@@ -13,14 +13,14 @@ RUN yarn install
 # Copy the rest of the application code to the working directory
 COPY . .
 
-# Build the React application
+# Build the React application with Vite
 RUN yarn build
 
-# Install serve to serve the build directory
+# Use a simple web server to serve the static files
 RUN yarn global add serve
-
-# Command to serve the build directory
-CMD ["serve", "-s", "build", "-l", "80"]
 
 # Expose the port the app runs on
 EXPOSE 80
+
+# Command to serve the build directory
+CMD ["serve", "-s", "dist", "-l", "80"]
