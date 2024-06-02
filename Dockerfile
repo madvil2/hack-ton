@@ -1,29 +1,26 @@
-# Use an official node image
-FROM node:18-alpine
+# Use the official Node.js image with Yarn
+FROM node:16
 
-# Set the working directory
-WORKDIR /app
+# Set working directory
+WORKDIR /usr/src/app
 
-# Copy the package.json and yarn.lock files to the working directory
+# Copy package.json and yarn.lock
 COPY package.json yarn.lock ./
 
-# Install dependencies
+# Install dependencies using Yarn
 RUN yarn install
 
-# Copy the rest of the application code to the working directory
+# Copy the rest of the application code
 COPY . .
 
-# Build the React application
+# Build the app for production
 RUN yarn build
-
-# Move serve.json to the build directory
-RUN cp serve.json build/serve.json
 
 # Install serve to serve the build directory
 RUN yarn global add serve
 
-# Command to serve the build directory
-CMD ["serve", "-s", "build", "-c", "build/serve.json"]
+# Use serve to serve the build directory on port 80
+CMD ["serve", "-s", "build", "-l", "80"]
 
-# Expose the port the app runs on
+# Expose port 80
 EXPOSE 80
