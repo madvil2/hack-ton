@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import styles from './App.module.scss';
-import { addUser, updateUserCoins, getUser, getAllUsers } from './Database/db';
+import { addUser, updateUserCoins, getUser, getAllUsers, clearDB } from './Database/db';
 import { countries } from './Database/countries';
 import Leaderboard from './Components/Leaderboard/Leaderboard';
 import populateDB from './Database/populateDB';
-import { UserOutlined, TrophyOutlined } from '@ant-design/icons';
+import { UserOutlined, TrophyOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import buttonSvg from './assets/button.png';
 import moneySvg from './assets/money.png';
@@ -17,11 +17,6 @@ function App() {
 
   useEffect(() => {
     const initializeApp = async () => {
-      const users = await getAllUsers();
-      if (users.length === 0) {
-        await populateDB();
-      }
-
       const storedUserId = localStorage.getItem('userId');
       if (storedUserId) {
         setUserId(storedUserId);
@@ -49,11 +44,24 @@ function App() {
   };
 
   const handleCountryChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const users = await getAllUsers();
+    if (users.length === 0) {
+      await populateDB();
+    }
     const country = event.target.value;
     setSelectedCountry(country);
     if (userId) {
       await addUser({ userid: userId, country, coins: 0 });
     }
+  };
+
+  const handleLogout = async () => {
+    localStorage.removeItem('userId');
+    await clearDB(); // Clear the IndexedDB database
+    setSelectedCountry(null);
+    setCoinCount(0);
+    setUserId('');
+    setCurrentView('coin');
   };
 
   const renderContent = () => {
@@ -102,6 +110,7 @@ function App() {
         <div className={styles.menu}>
           <Button ghost className={styles.btn} onClick={() => setCurrentView('coin')} shape="circle" icon={<UserOutlined className={styles.icon} />} />
           <Button ghost className={styles.btn} onClick={() => setCurrentView('leaderboard')} shape="circle" icon={<TrophyOutlined className={styles.icon} />} />
+          <Button ghost className={styles.btn} onClick={handleLogout} shape="circle" icon={<LogoutOutlined className={styles.icon} />} />
         </div>
       )}
     </div>

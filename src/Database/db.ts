@@ -44,3 +44,10 @@ export const getAllUsers = async () => {
   const db = await dbPromise;
   return db.getAll('users');
 };
+
+export const clearDB = async () => {
+  const db = await dbPromise;
+  const tx = db.transaction('users', 'readwrite');
+  await tx.objectStore('users').clear();
+  await tx.done;
+};
