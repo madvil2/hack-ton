@@ -1,23 +1,23 @@
-# Use the official Node.js image with Yarn
-FROM node:16
+# Use an official Node.js runtime as a parent image
+FROM node:18
 
-# Create and change to the app directory
+# Set the working directory
 WORKDIR /usr/src/app
 
-# Copy app files
-COPY . .
+# Copy package.json and yarn.lock
+COPY package.json yarn.lock ./
 
 # Install dependencies using Yarn
 RUN yarn install
 
+# Copy the rest of the application code
+COPY . .
+
 # Build the app for production
 RUN yarn build
 
-# Install serve to serve the build directory
-RUN yarn global add serve
-
-# Use serve to serve the build directory
-CMD ["serve", "-s", "build", "-l", "5000"]
-
 # Expose the port the app runs on
-EXPOSE 5000
+EXPOSE 3000
+
+# Define the command to run the app
+CMD ["yarn", "start"]
