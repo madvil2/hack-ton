@@ -109,6 +109,10 @@ p {
   border: 0 !important;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .clickButton {
   cursor: pointer;
   width: 60%;

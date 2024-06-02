@@ -109,8 +109,8 @@ function App() {
       {selectedCountry && (
         <div className={styles.menu}>
           <Button ghost className={styles.btn} onClick={() => setCurrentView('coin')} shape="circle" icon={<UserOutlined className={styles.icon} />} />
+          <Button ghost className={`${styles.btn} ${styles.invisible}`} onClick={handleLogout} shape="circle" icon={<LogoutOutlined className={styles.icon} />} />
           <Button ghost className={styles.btn} onClick={() => setCurrentView('leaderboard')} shape="circle" icon={<TrophyOutlined className={styles.icon} />} />
-          <Button ghost className={styles.btn} onClick={handleLogout} shape="circle" icon={<LogoutOutlined className={styles.icon} />} />
         </div>
       )}
     </div>
