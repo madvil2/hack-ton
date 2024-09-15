@@ -10,7 +10,7 @@ Our clicker app is designed to onboard people to our project, make them have fun
 
 We are thrilled to announce that our project won the **Berlin Bootcamp $NOT Exclusive 🤭** prize at the Open League Summer Berlin Bootcamp by TON Society Europe!
 
-A $NOT grant in the amount of $2,000 was awarded to our project by Valeriy Bukharkov, Open Builders CBDO (Tonstarter, Notcoin).
+A $NOT grant in the amount of $1,000 was awarded to our project by Valeriy Bukharkov, Open Builders CBDO (Tonstarter, Notcoin).
 
 ## Team
 
